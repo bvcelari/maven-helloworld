@@ -24,25 +24,6 @@ $id$
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <resources>
-        <resource>
-            <directory>${project.sources}</directory>
-            <filtering>true</filtering>
-            <excludes>
-                <exclude>**/*.woff</exclude>
-                <exclude>**/*.ttf</exclude>
-            </excludes>
-        </resource>
-        <resource>
-            <directory>${project.sources}</directory>
-            <filtering>false</filtering>
-            <includes>
-                <include>**/*.woff</include>
-                <include>**/*.ttf</include>
-            </includes>
-        </resource>
-    </resources>
-
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
@@ -50,6 +31,24 @@ $id$
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${project.sources}</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.sources}</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
