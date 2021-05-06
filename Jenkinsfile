@@ -1,5 +1,5 @@
 stage 'Compile'
-node('linux1') {
+node() {
     checkout scm
     def mvnHome = '/opt/apache-maven-3.5.3/bin/mvn'
     sh "${mvnHome}/bin/mvn clean install -DskipTests"
@@ -8,7 +8,7 @@ node('linux1') {
 
 stage 'Test'
 parallel one: {
-    node('linux1') {
+    node() {
         unstash 'working-copy'
         def mvnHome = tool 'maven-3'
         sh "${mvnHome}/bin/mvn test -Diterations=10"
@@ -31,7 +31,7 @@ node('linux1') {
 
 stage name: 'Deploy', concurrency: 1
 def path = input message: 'Where should I deploy this build?', parameters: [[$class: 'StringParameterDefinition', name: 'FILE_PATH']]
-node('linux1') {
+node() {
     unstash 'working-copy'
     sh "cp target/example-1.0-SNAPSHOT.jar ${path}"
 }
