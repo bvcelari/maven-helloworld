@@ -1,7 +1,7 @@
 stage 'Compile'
 node() {
     checkout scm
-    def mvnHome = '/opt/apache-maven-3.5.3/bin/mvn'
+    def mvnHome = '/usr/bin/mvn'
     sh "${mvnHome}/bin/mvn clean install -DskipTests"
     stash 'working-copy'
 }
