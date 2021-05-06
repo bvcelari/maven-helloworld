@@ -1,8 +1,7 @@
 stage 'Compile'
 node('linux1') {
     checkout scm
-    // use for non multibranch: git 'https://github.com/amuniz/maven-helloworld.git'
-    def mvnHome = tool 'maven-3'
+    def mvnHome = '/opt/apache-maven-3.5.3/bin/mvn'
     sh "${mvnHome}/bin/mvn clean install -DskipTests"
     stash 'working-copy'
 }
