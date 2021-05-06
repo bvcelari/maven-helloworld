@@ -21,14 +21,6 @@ parallel one: {
     }
 }, failFast: true
 
-stage 'Code Quality'
-node() {
-    unstash 'working-copy'
-    step([$class: 'CheckStylePublisher'])
-    step([$class: 'FindBugsPublisher'])
-    step([$class: 'PmdPublisher'])
-}
-
 stage name: 'Deploy', concurrency: 1
 def path = input message: 'Where should I deploy this build?', parameters: [[$class: 'StringParameterDefinition', name: 'FILE_PATH']]
 node() {
