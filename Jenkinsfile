@@ -1,8 +1,8 @@
 stage 'Compile'
 node() {
     checkout scm
-    def mvnHome = '/usr/bin/mvn'
-    sh "${mvnHome}/bin/mvn clean install -DskipTests"
+    def mvnHome = '/usr/'
+    sh "/usr/bin/mvn clean install -DskipTests"
     stash 'working-copy'
 }
 
@@ -10,13 +10,13 @@ stage 'Test'
 parallel one: {
     node() {
         unstash 'working-copy'
-        def mvnHome = tool 'maven-3'
-        sh "${mvnHome}/bin/mvn test -Diterations=10"
+        //def mvnHome = tool 'maven-3'
+        sh "/usr/bin/mvn test -Diterations=10"
     }
 }, two: {
     node('linux2') {
         unstash 'working-copy'
-        def mvnHome = tool 'maven-3'
+    def mvnHome = '/usr/'
         sh "${mvnHome}/bin/mvn test -Diterations=5"
     }
 }, failFast: true
