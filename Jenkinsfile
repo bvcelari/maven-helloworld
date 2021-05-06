@@ -14,7 +14,7 @@ parallel one: {
         sh "/usr/bin/mvn test -Diterations=10"
     }
 }, two: {
-    node('linux2') {
+    node() {
         unstash 'working-copy'
     def mvnHome = '/usr/'
         sh "${mvnHome}/bin/mvn test -Diterations=5"
@@ -22,7 +22,7 @@ parallel one: {
 }, failFast: true
 
 stage 'Code Quality'
-node('linux1') {
+node() {
     unstash 'working-copy'
     step([$class: 'CheckStylePublisher'])
     step([$class: 'FindBugsPublisher'])
